@@ -23,11 +23,11 @@ names a target of "4 of 5", and four of three is not a thing.
 
 QUESTIONS = [
     # {"question": "...", "expects": "..."},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
-    {"question": "", "expects": ""},
+    {"question": "What is the last day to change the meal plan tier?", "expects": "first 10 days"},
+    {"question": "What months are best for biking", "expects": "September to November"},
+    {"question": "Which parking lot is the most popular", "expects": "West lot"},
+    {"question": "How much does does it cost to print 600 balck and white pages?", "expects": "30$"},
+    {"question": "Is it allowable to book a library study room for individual use?", "expects": "Yes"},
 ]
 
 # Questions from a different world entirely. Your gate should refuse all five.
@@ -42,7 +42,8 @@ OUT_OF_SCOPE = [
     "How do I change the oil in a diesel engine?",
     "Who won the 1994 World Cup?",
     "What is the recommended dosage of ibuprofen for a headache?",
-    "How do I write a for loop in Rust?",
+    # "How do I write a for loop in Rust?",
+    "What does the bronze meal plan offer ?",
 ]
 
 

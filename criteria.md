@@ -26,6 +26,7 @@ contains the answer.
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
 
+One of my questions has its answer in a low-voted reply and retrieval may favor the top-voted replies instead.
 ---
 
 ## 2. Every answer names a source
@@ -36,6 +37,7 @@ Every answer the system produces names at least one source document.
 <!-- Why all five and not four? What about your setup makes that achievable —
      or what would have to go wrong for it not to be? -->
 
+Each of my questions requires facts specific to the source documents that general knowledge wouldn't contain.
 ---
 
 ## 3. The relevance gate stops out-of-corpus questions
@@ -52,7 +54,7 @@ in at least 4 of 5 tries.
 **Why this target:**
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
-
+One of my out of corpus questions is very close to my actual content. I expect the system might pull in related chunks and give inaccurate answer
 ---
 
 ## 4. Something about your chunks
@@ -70,9 +72,12 @@ in at least 4 of 5 tries.
           in my corpus turned out to be a heading with no content under it." -->
 
 
+No chunk boundary falls inside a sentence or inside a --- reply N (votes) --- marker, every boundary must land immediately after a ., !, ?, paragraph break, or a complete marker.
+
 
 **Why this target:**
 
+The information is incomeplet or meaningless if the chunk stops at the middle of the sentence or inside a --- reply N (votes) --- marker
 
 
 ---
@@ -87,10 +92,10 @@ in at least 4 of 5 tries.
      present — anything, as long as it names a number or an observable
      outcome. -->
 
-
-
+The system shouldn't spend more than 30 seconds to return an answer since task begins
 **Why this target:**
 
+The questions are focused and don't require scanning through a large volume of data, so low latency is expected.
 
 
 ---
