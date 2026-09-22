@@ -83,14 +83,17 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question:** What is the last day to change the meal plan tier?
 
 **Answer:**
 
-```
-```
+  (best distance 0.297, cutoff 0.6)
 
-**My relevance cutoff:**
+According to thread_meal_plan_tier.txt, you can only change the meal plan tier in the first ten days.
+
+Sources retrieved: thread_meal_plan_tier.txt, thread_pass_fail.txt
+
+**My relevance cutoff:** 0.6 because the largest distance among the relevant queries is 0.571. So, a 0.6 cutoff preserves recall across all relevant test cases and there is only one false positive
 
 <!-- The number you set in config.py, and how you got there.
 
@@ -103,7 +106,17 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+|"What is the last day to change the meal plan tier?"  | Yes | 0.297 |
+|"What months are best for biking?"| Yes | 0.571 |
+|"Which parking lot is the most popular?"|Yes|0.568|
+|"How much does does it cost to print 600 balck and white pages?"|Yes|0.297|
+|"Is it allowable to book a library study room for individual use?"|Yes|0.256|
+|"What is the capital of Mongolia?"|No|0.878
+|"How do I change the oil in a diesel engine?"|No|0.721|
+|"Who won the 1994 World Cup?"|No|0.885|
+|"What is the recommended dosage of ibuprofen for a headache?"|No|0.728|
+|"What does the bronze meal plan offer ?"|No|0.410|
+
 
 ## How I Used AI
 
@@ -116,9 +129,9 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
 
      Milestone 5. -->
 
-**1.**
+**1.** I used AI to explain concepts that were unclear to me, such as explain how distance and cutoff are related. As a result, I could choose my relevant cutoff based on the distance.
 
-**2.**
+**2.** I used AI to summarize what `chunker.py` does so I could quickly understand the overall file and spend more time implementing the `split_documents()` function.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
