@@ -26,6 +26,14 @@
      this repo.
 
      Milestone 5. -->
+This is a question-answering system built on the **advice_threads** corpus. I picked advice_threads because each document is a forum thread with a question
+and multiple replies, a format I had never worked with before. You ask a campus
+question in plain English (commuting, housing, laptops, group projects), and the
+system finds the most relevant replies across the threads, answers using only what
+those replies actually say, and cites the file each piece of advice came from. To
+test it I wrote 5 questions the threads can answer and 5 that are out of scope, so I
+could check that it answers the first group and refuses the second instead of making
+something up.
 
 ## Chunking Strategy
 
