@@ -38,7 +38,7 @@ something up.
 ## Chunking Strategy
 
 **Chunk size:**
-The chunk size is set to 800 as an unused safety cap because the longest reply is 222 characters
+My strategy splits on paragraph boundaries, so chunk size and overlap don't apply — the longest paragraph in my corpus is 222 characters and every chunk is one paragraph.
 **Overlap:**
 The overlap is set to 0 because I split on paragraph boundaries. As a result, setting overlap to 0 is to avoid duplicated content. 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
