@@ -245,9 +245,9 @@ Is it allowable to book a library study room for individual use?
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** I changed the 'expects' of the question 1 to "first ten days"
 
-**Why I picked it:**
+**Why I picked it:** The diagnosis showed that question 1's "fail" came from the scorer's wording ("10" vs "ten"), not from the system, so I fixed the scorer's input.
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
@@ -259,11 +259,38 @@ Is it allowable to book a library study room for individual use?
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET |
+| 4. Chunk Boundary Integrity | 0 broken boundaries | 0 of 98 | 0 of 98 | 0 of 98 | MET |
+| 5. Response Time Requirement | under 30 s, 5 of 5 | 10  | 20 | 15 | MET |
+
+```
+What is the last day to change the meal plan tier?
+  run 1: pass  (best distance 0.297)
+  run 2: pass  (best distance 0.297)
+  run 3: pass  (best distance 0.297)
+
+What months are best for biking?
+  run 1: pass  (best distance 0.571)
+  run 2: pass  (best distance 0.571)
+  run 3: pass  (best distance 0.571)
+
+Which parking lot is the most popular?
+  run 1: pass  (best distance 0.568)
+  run 2: pass  (best distance 0.568)
+  run 3: pass  (best distance 0.568)
+
+How much does it cost to print 600 black and white pages?
+  run 1: pass  (best distance 0.215)
+  run 2: pass  (best distance 0.215)
+  run 3: pass  (best distance 0.215)
+
+Is it allowable to book a library study room for individual use?
+  run 1: pass  (best distance 0.256)
+  run 2: pass  (best distance 0.256)
+  run 3: pass  (best distance 0.256)
+```
 
 **Did it help?**
 
@@ -273,6 +300,8 @@ Is it allowable to book a library study room for individual use?
      tell.
 
      Milestone 4. -->
+
+Not really. The system's answers did not change. Only the scorer's result did, going from 12/15 passes to 15/15, because I changed `expects` to match the model's wording ("ten" instead of "10"). All five criterion verdicts are the same before and after, so the system itself is no better. The fix corrected my measurement, not my pipeline.
 
 ## What's Still Broken
 
@@ -284,9 +313,12 @@ Is it allowable to book a library study room for individual use?
 
      Milestone 5. -->
 
+Nothing is formally missed, but criterion 3 only just passes. "What does the bronze meal plan offer?" still gets through the gate at distance 0.410. My real questions go as high as 0.571, so lowering the cutoff to block it would also block real questions. A cutoff can't fix this. The fix would have to happen at generation: the model should say "I don't have information about that" when the retrieved chunks don't mention what the question asks about. I stopped here because [your real reason].
+
 ## What I'd Do Differently
 
 <!-- Knowing what you know now — which of your five criteria would you write
      differently, and why?
 
      Milestone 5. -->
+I would rewrite criterion 1. It says "the retrieved chunks include one that contains the answer", but my scorer checks the model's answer text for an exact phrase, so "first ten days" counted as a failure even though the right chunk was retrieved. I'd either score criterion 1 by checking the retrieved chunks directly, or make the scorer accept equivalent wordings, such as numbers written as digits or as words.
