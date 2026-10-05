@@ -117,7 +117,7 @@ Sources retrieved: thread_meal_plan_tier.txt, thread_pass_fail.txt
 |"What is the last day to change the meal plan tier?"  | Yes | 0.297 |
 |"What months are best for biking?"| Yes | 0.571 |
 |"Which parking lot is the most popular?"|Yes|0.568|
-|"How much does does it cost to print 600 balck and white pages?"|Yes|0.297|
+|"How much  does it cost to print 600 black and white pages?"|Yes|0.297|
 |"Is it allowable to book a library study room for individual use?"|Yes|0.256|
 |"What is the capital of Mongolia?"|No|0.878
 |"How do I change the oil in a diesel engine?"|No|0.721|
@@ -168,15 +168,40 @@ Sources retrieved: thread_meal_plan_tier.txt, thread_pass_fail.txt
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5 of 5 | 5 of 5 | 5 of 5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 4 of 5 | 4 of 5 | 4 of 5 | MET |
+| 4. Chunk Boundary Integrity | 0 broken boundaries | 0 of 98 | 0 of 98 | 0 of 98 | MET |
+| 5. Response Time Requirement | under 30 s, 5 of 5 | 10  | 20 | 15 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+What is the last day to change the meal plan tier?
+  run 1: fail  (best distance 0.297)
+  run 2: fail  (best distance 0.297)
+  run 3: fail  (best distance 0.297)
+
+What months are best for biking?
+  run 1: pass  (best distance 0.571)
+  run 2: pass  (best distance 0.571)
+  run 3: pass  (best distance 0.571)
+
+Which parking lot is the most popular?
+  run 1: pass  (best distance 0.568)
+  run 2: pass  (best distance 0.568)
+  run 3: pass  (best distance 0.568)
+
+How much does it cost to print 600 black and white pages?
+  run 1: pass  (best distance 0.215)
+  run 2: pass  (best distance 0.215)
+  run 3: pass  (best distance 0.215)
+
+Is it allowable to book a library study room for individual use?
+  run 1: pass  (best distance 0.256)
+  run 2: pass  (best distance 0.256)
+  run 3: pass  (best distance 0.256)
 
 ## Verdicts
 
@@ -191,11 +216,11 @@ Sources retrieved: thread_meal_plan_tier.txt, thread_pass_fail.txt
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | For all 5 questions, in all 3 runs, the thread holding the answer was among the retrieved sources. The scorer marked the meal-plan question "fail" every run, but only because the model wrote "first ten days" and `expects` says "first 10 days". The retrieved chunk (distance 0.297) and the answer were both correct, so I counted it as 5 of 5. |
+| 2 | Every answer names a source | MET | I read all 15 answers in the run log, and every one names a `.txt` file, e.g. "You can only change the meal plan tier in the first ten days (thread_meal_plan_tier.txt)." |
+| 3 | Gate stops out-of-corpus questions | MET | Exactly at the target: 4 of 5 refused. "What does the bronze meal plan offer?" got through at distance 0.410 (cutoff 0.6) because it is close to `thread_meal_plan_tier.txt`, even though "bronze" appears nowhere in the corpus. That is the near-topic risk I predicted in criteria.md. |
+| 4 | Chunk Boundary Integrity | MET | I checked all 98 chunks from `chunker.py::split_documents`. Every chunk ends with `.`, `!` or `?`, a complete `--- reply N (votes) ---` marker, or a `THREAD:` line, and none contains a split marker. Chunking is deterministic, so all three runs are the same. |
+| 5 | Response Time Requirement | MET | I compare runtime for each question and they are met the requirement < 30s |
 
 ## Diagnoses
 
@@ -216,6 +241,7 @@ Sources retrieved: thread_meal_plan_tier.txt, thread_pass_fail.txt
      low, and which one you'd tighten and to what.
 
      Milestone 3. -->
+     Question 1 failed because the 'expects' says "first 10 days", but the model wrote "first ten days"
 
 ## The Improvement
 

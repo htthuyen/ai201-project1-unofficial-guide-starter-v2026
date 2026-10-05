@@ -57,7 +57,7 @@ in at least 4 of 5 tries.
 One of my out of corpus questions is very close to my actual content. I expect the system might pull in related chunks and give inaccurate answer
 ---
 
-## 4. Something about your chunks
+## 4. Chunk Boundary Integrity
 
 <!-- YOU WRITE THIS ONE.
 
@@ -77,12 +77,12 @@ No chunk boundary falls inside a sentence or inside a --- reply N (votes) --- ma
 
 **Why this target:**
 
-The information is incomeplet or meaningless if the chunk stops at the middle of the sentence or inside a --- reply N (votes) --- marker
+The information is incomeplete or meaningless if the chunk stops at the middle of the sentence or inside a --- reply N (votes) --- marker
 
 
 ---
 
-## 5. Your choice
+## 5. Response Time Requirement
 
 <!-- YOU WRITE THIS ONE TOO.
 
