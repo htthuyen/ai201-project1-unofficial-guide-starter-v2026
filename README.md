@@ -177,7 +177,7 @@ Sources retrieved: thread_meal_plan_tier.txt, thread_pass_fail.txt
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
-
+```
 What is the last day to change the meal plan tier?
   run 1: fail  (best distance 0.297)
   run 2: fail  (best distance 0.297)
@@ -202,7 +202,7 @@ Is it allowable to book a library study room for individual use?
   run 1: pass  (best distance 0.256)
   run 2: pass  (best distance 0.256)
   run 3: pass  (best distance 0.256)
-
+```
 ## Verdicts
 
 <!-- MET or MISSED for each of the five, against the target you wrote last
